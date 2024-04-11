@@ -56,7 +56,7 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
                 APNSPushComponentContext(
                     configuration: .init(
                         authenticationMethod: .jwt(
-                            privateKey: try! .loadFrom(string: self.privateKey),  // try .init(pemRepresentation: privateP8Key)
+                            privateKey: try! .loadFrom(string: self.privateKey),
                             keyIdentifier: self.keyId,
                             teamIdentifier: self.teamId
                         ),
@@ -67,37 +67,13 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
                 )
             )
 
-            try await registry.run()
             let push = try await registry.push()
 
             do {
-                // TODO: enable push test suite
-                //                let suite = PushTestSuite(push)
-                //                try await suite.testAll()
-
-                let notification = Notification(
-                    title: "Test push notification",
-                    body: "Test body for the push notification",
-                    userInfo: [
-                        "foo": "bar"
-                    ],
-                    delivery: .normal
-                )
-
-                let recipient = Recipient(
-                    token: token,
-                    platform: .iOS
-                )
-
-                try await push.send(
-                    notification: notification,
-                    to: [recipient]
-                )
-
-                try await registry.shutdown()
+                let suite = PushTestSuite(push)
+                try await suite.testAll(from: "from", to: "to")
             }
             catch {
-                try await registry.shutdown()
                 throw error
             }
         }

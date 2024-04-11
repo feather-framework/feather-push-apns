@@ -35,9 +35,6 @@ struct APNSPushComponent {
         return context[keyPath: keyPath]
     }
 
-    init(config: ComponentConfig) {
-        self.config = config
-    }
 }
 
 extension APNSPushComponent: PushComponent {
