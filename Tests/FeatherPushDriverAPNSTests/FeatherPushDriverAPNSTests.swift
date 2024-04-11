@@ -70,29 +70,8 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
             let push = try await registry.push()
 
             do {
-                // TODO: enable push test suite
-                //                let suite = PushTestSuite(push)
-                //                try await suite.testAll()
-
-                let notification = Notification(
-                    title: "Test push notification",
-                    body: "Test body for the push notification",
-                    userInfo: [
-                        "foo": "bar"
-                    ],
-                    delivery: .normal
-                )
-
-                let recipient = Recipient(
-                    token: token,
-                    platform: .iOS
-                )
-
-                try await push.send(
-                    notification: notification,
-                    to: [recipient]
-                )
-
+                let suite = PushTestSuite(push)
+                try await suite.testAll(from: "from", to: "to")
             }
             catch {
                 throw error
