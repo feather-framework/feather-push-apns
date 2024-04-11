@@ -56,7 +56,7 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
                 APNSPushComponentContext(
                     configuration: .init(
                         authenticationMethod: .jwt(
-                            privateKey: try! .loadFrom(string: self.privateKey),  // try .init(pemRepresentation: privateP8Key)
+                            privateKey: try! .loadFrom(string: self.privateKey),
                             keyIdentifier: self.keyId,
                             teamIdentifier: self.teamId
                         ),
@@ -67,7 +67,6 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
                 )
             )
 
-            try await registry.run()
             let push = try await registry.push()
 
             do {
@@ -94,10 +93,8 @@ final class FeatherPushDriverAPNSTests: XCTestCase {
                     to: [recipient]
                 )
 
-                try await registry.shutdown()
             }
             catch {
-                try await registry.shutdown()
                 throw error
             }
         }

@@ -11,6 +11,7 @@ import NIO
 import APNS
 import FeatherComponent
 
+/// apns push component context
 public struct APNSPushComponentContext: ComponentContext {
 
     let configuration: APNSClientConfiguration
@@ -19,6 +20,7 @@ public struct APNSPushComponentContext: ComponentContext {
     let requestEncoder: JSONEncoder
     let byteBufferAllocator: ByteBufferAllocator
 
+    /// apns push component context init
     public init(
         configuration: APNSClientConfiguration,
         eventLoopGroupProvider: NIOEventLoopGroupProvider = .createNew,
@@ -33,8 +35,9 @@ public struct APNSPushComponentContext: ComponentContext {
         self.byteBufferAllocator = byteBufferAllocator
     }
 
-    public func make() throws -> ComponentBuilder {
-        APNSPushComponentBuilder(context: self)
+    /// apns push component make
+    public func make() throws -> ComponentFactory {
+        APNSPushComponentFactory(context: self)
     }
 
 }

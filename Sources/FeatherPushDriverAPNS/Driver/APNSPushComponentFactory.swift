@@ -9,13 +9,9 @@ import FeatherComponent
 import Foundation
 import APNS
 
-struct APNSPushComponentBuilder: ComponentBuilder {
+struct APNSPushComponentFactory: ComponentFactory {
 
     let context: APNSPushComponentContext
-
-    init(context: APNSPushComponentContext) {
-        self.context = context
-    }
 
     func build(using config: ComponentConfig) throws -> Component {
         APNSPushComponent(config: config)
