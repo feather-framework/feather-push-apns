@@ -15,7 +15,7 @@ read -ra PATHS_TO_CHECK <<< "$( \
 )"
 
 for FILE_PATH in "${PATHS_TO_CHECK[@]}"; do
-    if [[ $(grep ".package(path:" "${FILE_PATH}"|wc -l) -ne 0 ]] ; then
+    if grep -Fq ".package(path:" "${FILE_PATH}"; then
         fatal "❌ The '${FILE_PATH}' file contains local Swift package reference(s)."
     fi
 done 

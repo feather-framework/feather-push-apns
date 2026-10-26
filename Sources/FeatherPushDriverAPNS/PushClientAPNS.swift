@@ -61,7 +61,10 @@ public struct PushClientAPNS: PushClient, Sendable {
                     sound: Self.apnsSound(for: notification.sound)
                 )
                 alert.collapseID = notification.collapseID
-                _ = try await client.sendAlertNotification(alert, deviceToken: deviceToken)
+                _ = try await client.sendAlertNotification(
+                    alert,
+                    deviceToken: deviceToken
+                )
             case .silent:
                 _ = try await client.sendBackgroundNotification(
                     APNSBackgroundNotification(
