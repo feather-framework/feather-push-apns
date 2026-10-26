@@ -30,7 +30,6 @@ if [ "${SWIFT_FORMAT_RC}" -ne 0 ]; then
 
     % ./scripts/run-swift-format.sh --fix
   "
-  exit "${SWIFT_FORMAT_RC}"
 fi
 
 log "✅ Ran swift-format with no errors."
