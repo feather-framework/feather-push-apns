@@ -27,12 +27,21 @@ let package = Package(
         .visionOS(.v2),
     ],
     products: [
-        .library(name: "FeatherPushDriverAPNS", targets: ["FeatherPushDriverAPNS"]),
+        .library(
+            name: "FeatherPushDriverAPNS",
+            targets: ["FeatherPushDriverAPNS"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "5.0.0"),
+        .package(
+            url: "https://github.com/swift-server-community/APNSwift.git",
+            from: "5.0.0"
+        ),
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.62.0"),
-        .package(url: "https://github.com/feather-framework/feather-push.git", exact: "1.0.0-rc.1"),
+        .package(
+            url: "https://github.com/feather-framework/feather-push.git",
+            exact: "1.0.0-rc.1"
+        ),
     ],
     targets: [
         .target(
